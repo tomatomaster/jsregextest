@@ -1,0 +1,39 @@
+<html>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+    $('#bb').on('click',function(e){
+        console.log('hoge');
+    })
+    </script>
+    <script>
+        function js_alert() {
+            const startTime = performance.now(); // 開始時間
+            var pattern = /決定事項.*?。/g
+            var giziroku = document.form.giziroku.value;
+            var result = giziroku.match(pattern);
+            var aiList = "";
+            result.forEach(element => {                
+               aiList += element + '\n';
+            });
+            document.form.ai.value = aiList;
+            document.getElementById("num").innerText = result.length;
+            const endTime = performance.now(); // 終了時間
+            document.getElementById("sec").innerText = String(endTime - startTime);
+        }
+    </script>
+    <form name="form">
+        <label>議事録</label><br>
+        <textarea id="giziroku" rows="20" cols="150"></textarea>
+        <br>
+        <label>AI事項</label><br>
+        <textarea name="ai" cols="50" rows=5></textarea>
+    </form>
+    <body>
+        <a href="#" onclick="js_alert()">AI抽出</a>
+    </body>
+    <br>
+    <label id="num">0</label> 個<br>
+    <label id="sec">0</label> millisec<br>
+</html>
